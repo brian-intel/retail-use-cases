@@ -7,3 +7,6 @@ build:
 
 build-realsense:
 	docker build --build-arg HTTPS_PROXY=${HTTPS_PROXY} --build-arg HTTP_PROXY=${HTTP_PROXY} --target build-realsense -t dlstreamer:realsense -f Dockerfile .
+
+minikube-build:
+	minikube image  build -t dlstreamer:dev -f Dockerfile .

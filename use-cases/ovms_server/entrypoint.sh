@@ -5,6 +5,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+echo $TARGET_DEVICE
+
 if [ "$TARGET_DEVICE" ] 
 then
     ovms_jsonCfg=`cat /config/config.json`

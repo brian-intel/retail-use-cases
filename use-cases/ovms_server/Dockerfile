@@ -7,6 +7,7 @@ RUN apt-get update -y || true; DEBIAN_FRONTEND=noninteractive apt-get install -y
 
 COPY config.json /config/config.json
 COPY entrypoint.sh /script/entrypoint.sh
+RUN chown ovms /config/config.json
 
 USER ovms
 ENTRYPOINT ["/script/entrypoint.sh"]
