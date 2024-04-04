@@ -5,7 +5,6 @@ docs/sitemap.xml.gz
 docs/*
 
 benchmark-scripts/results/
-models/
 results/
 
 use-cases/gst_capi/docker-compose_capi_yolov5.yml
