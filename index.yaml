@@ -9,6 +9,6 @@ entries:
     - kubernetes
     name: kubernetes
     urls:
-    - https://github.com/brian-intel/retail-use-cases/kubernetes-0.0.1.tgz
+    - https://github.com/brian-intel/retail-use-cases/blob/main/kubernetes-0.0.1.tgz
     version: 0.0.1
 generated: "2024-04-04T14:39:08.329939428-07:00"
