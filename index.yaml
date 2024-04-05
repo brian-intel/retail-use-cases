@@ -9,16 +9,6 @@ entries:
     - dls
     name: dls
     urls:
-    - https://github.com/brian-intel/retail-use-cases/blob/main/dls.tar.gz
-    version: 0.0.1
-  - apiVersion: v1
-    created: "2024-04-05T11:00:31.89503214-07:00"
-    description: Basic object detection
-    digest: 101e6d4a17ba94a89d6c8caa877bcb84abfa71315f7848b9eea4e8fdb32e8405
-    keywords:
-    - dls
-    name: dls
-    urls:
-    - https://github.com/brian-intel/retail-use-cases/blob/main/.deploy/dls-0.0.1.tgz
+    - https://github.com/brian-intel/retail-use-cases/dls-0.0.1.tgz
     version: 0.0.1
 generated: "2024-04-05T11:00:31.894517712-07:00"
