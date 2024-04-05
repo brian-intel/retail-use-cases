@@ -51,3 +51,13 @@ kubectl logs dlstreamer-5c684668dc-dlgw2
 ```
 make stop-minikube-demo
 ```
+
+## Useful helm commands
+
+helm package charts/ -u -d .deploy
+helm package charts/
+helm repo index --url https://github.com/brian-intel/retail-use-cases .
+
+helm repo add dls https://brian-intel.github.io/retail-use-cases/
+helm search repo dls
+helm install dls dls/kubernetes
