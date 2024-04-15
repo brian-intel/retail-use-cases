@@ -1,7 +1,7 @@
 apiVersion: v1
 entries:
   dls:
-  - apiVersion: v2
+  - apiVersion: v1
     created: "2024-04-05T11:26:11.905554255-07:00"
     description: Basic object detection
     digest: 101e6d4a17ba94a89d6c8caa877bcb84abfa71315f7848b9eea4e8fdb32e8405
@@ -9,7 +9,7 @@ entries:
     - dls
     name: dls
     urls:
-    - https://raw.githubusercontent.com/brian-intel/retail-use-cases/main/dls-0.0.1.tgz
+    - dls-0.0.1.tgz
     version: 0.0.1
   - apiVersion: v1
     created: "2024-04-05T11:26:11.905737825-07:00"
