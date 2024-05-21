@@ -45,6 +45,8 @@ sleep $OVMS_INIT_TIME_IN_SECOND
 
 PROFILE_NAME="grpc_python"
 
-# Run the grpc python client
-python3 ./grpc_python.py --input_src "$INPUTSRC" --grpc_address 127.0.0.1 --grpc_port "$GRPC_PORT" --model_name "$DETECTION_MODEL_NAME" \
-2>&1  | tee >/tmp/results/r$cid"_$PROFILE_NAME".jsonl >(stdbuf -oL sed -n -e 's/^.*fps: //p' | stdbuf -oL cut -d , -f 1 > /tmp/results/pipeline$cid"_$PROFILE_NAME".log)
+# # Run the grpc python client
+# python3 ./grpc_python.py --input_src rtsp://127.0.0.1:8554/camera_0 --grpc_address 127.0.0.1 --grpc_port 9001 --model_name instance-segmentation-security-1040
+# 2>&1  | tee >/tmp/results/r$cid"_$PROFILE_NAME".jsonl >(stdbuf -oL sed -n -e 's/^.*fps: //p' | stdbuf -oL cut -d , -f 1 > /tmp/results/pipeline$cid"_$PROFILE_NAME".log)
+
+while :; do sleep 2; done

@@ -20,4 +20,4 @@ down:
 	PIPELINE_COUNT=$(PIPELINE_COUNT) MODEL_NAME=$(MODEL_NAME) RETAIL_USE_CASE_ROOT="$(RETAIL_USE_CASE_ROOT)" RESULTS_DIR="$(RESULTS_DIR)" docker compose -f $(DOCKER_COMPOSE) down
 
 debug:
-	docker run -v .:/tmp/capi_python -it capi_python:dev /bin/bash
+	docker run -v .:/tmp/capi_python --network host --rm --name debug -it capi_python:dev /bin/bash

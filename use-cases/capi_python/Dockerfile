@@ -18,6 +18,7 @@ RUN apt-get update -y || true; DEBIAN_FRONTEND=noninteractive apt-get install -y
     git \
     python3 \
     python3-pip \
+    libboost-python-dev \
     python3-opencv && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -52,8 +53,20 @@ COPY capi_yolov8_ensemble /app/gst-ovms/pipelines/yolov8_ensemble
 
 RUN cd /app/gst-ovms/pipelines/yolov8_ensemble; make build
 
-USER ovms
+
+USER root
+# Set up Bazel
+ENV BAZEL_VERSION 6.0.0
+RUN apt install apt-transport-https curl gnupg -y && \
+    curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor >bazel-archive-keyring.gpg && \
+    mv bazel-archive-keyring.gpg /usr/share/keyrings && \ 
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/bazel-archive-keyring.gpg] https://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list && \
+    apt update && \
+    apt install bazel-6.0.0 -y
+
 WORKDIR /app/gst-ovms/pipelines
+
+RUN git clone https://github.com/openvinotoolkit/model_server
 
 # Enable HWA decoder for OpenCV using GST use cases
 ENV OPENCV_FFMPEG_CAPTURE_OPTIONS="hw_decoders_any;vaapi"
