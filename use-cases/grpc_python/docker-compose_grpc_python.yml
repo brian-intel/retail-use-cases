@@ -33,42 +33,27 @@ services:
     depends_on:
       - camera-simulator
     volumes:
-      - ${RETAIL_USE_CASE_ROOT}/performance-tools/sample-media:/home/pipeline-server/sample-media
-
-  OvmsServer:
-    image: ovms-server:dev
-    container_name: ovms-server0
-    restart: always
-    ports:
-      - '9001:9001'
-      - '9002:9002'
-    volumes:
-      - ${RETAIL_USE_CASE_ROOT}/models:/models
-    environment:
-      - DEVICE=CPU
-      - PLATFORM="core"
-      - server_cl_cache_dir=/home/pipeline-server/.cl-cache
+      - ${RETAIL_USE_CASE_ROOT:-../..}/performance-tools/sample-media:/home/pipeline-server/sample-media
 
   OvmsClientGrpcPython:
     image: grpc_python:dev
     deploy:
       mode: replicated
-      replicas: ${PIPELINE_COUNT}
+      replicas: ${PIPELINE_COUNT:-1}
     network_mode: "host"
-    entrypoint: /app/entrypoint.sh --model_name ${MODEL_NAME}
+    entrypoint: /app/entrypoint.sh --model_name ${MODEL_NAME:-instance-segmentation-security-1040}
     env_file:
       - ./res/grpc_python.env
     environment:
       - CONTAINER_NAME="grpc_python0"
-      - GRPC_PORT=9001
-      - INPUTSRC=rtsp://localhost:8554/camera_0
-      - TARGET_DEVICE=CPU
+      - GRPC_PORT=${GRPC_PORT:-9001}
+      - GRPC_ADDRESS=${GRPC_ADDRESS:-localhost}
+      - INPUTSRC=${INPUTSRC:-rtsp://localhost:8554/camera_0}
+      - TARGET_DEVICE=${TARGET_DEVICE:-CPU}
       - OVMS_INIT_TIME_IN_SECOND=10
       - RENDER_MODE=0 #RENDER_MODE=1 will work only after running xhost +local:docker
       - DISPLAY=$DISPLAY
-    depends_on:
-      - OvmsServer
     volumes:
-      - ${RESULTS_DIR}:/tmp/results
+      - ${RESULTS_DIR:-./../results}:/tmp/results
       - ~/.Xauthority:/home/dlstreamer/.Xauthority
       - /tmp/.X11-unix

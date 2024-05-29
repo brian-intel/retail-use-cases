@@ -1,0 +1,24 @@
+#
+# Copyright (C) 2024 Intel Corporation.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+
+ ## Current Developer Toolbox doesn't support environment files, make sure to remove any files or environment variables starting with $
+version: '3.7'
+services:
+  OvmsServer:
+    image: ovms-server:dev
+    container_name: ovms-server0
+    restart: always
+    network_mode: "host"
+    ports:
+      - '9001:9001'
+      - '9002:9002'
+    volumes:
+      - ${RETAIL_USE_CASE_ROOT:-../..}/models:/models
+    environment:
+      - DEVICE=CPU
+      - PLATFORM="core"
+      - server_cl_cache_dir=/home/pipeline-server/.cl-cache
